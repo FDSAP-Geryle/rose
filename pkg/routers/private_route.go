@@ -27,5 +27,6 @@ func SetupPrivateRoutes(app *fiber.App) {
 
 	// Service health check
 	v1Endpoint.Get("/", healthchecks.CheckServiceHealth)
+	v1Endpoint.Get("/hello", func(c *fiber.Ctx) error { return c.SendString("hello mond") })
 
 }
