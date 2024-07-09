@@ -22,6 +22,7 @@ func SetupPublicRoutes(app *fiber.App) {
 	//MyTest routes
 	v1Endpoint.Get("/hello", func(c *fiber.Ctx) error { return c.SendString("hello mond") })
 	v1Endpoint.Get("/merchant_upload", routes.GetUploadMerchant)
+	v1Endpoint.Get("/merchant_upload_non_activated", routes.GetUploadMerchantNonActivated)
 
 }
 
