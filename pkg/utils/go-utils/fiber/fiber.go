@@ -285,3 +285,13 @@ func GetJWTClaimOfType(key string, valueType interface{}) error {
 
 	return err
 }
+
+func GenerateJWTToken() (string, error) {
+	claims := jwt.MapClaims{
+		"exp": time.Now().Add(time.Minute * 15).Unix(),
+	}
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+
+	signedToken, err := token.SignedString([]byte(jwtConfig.SecretKey))
+	return signedToken, err
+}
