@@ -24,6 +24,7 @@ func SetupPublicRoutes(app *fiber.App) {
 	v1Endpoint.Get("/merchant_upload", routes.GetUploadMerchant)
 	v1Endpoint.Post("/merchant_upload_non_activated", routes.UploadMerchantNonActivated)
 
+	//
 }
 
 func SetupPublicRoutesB(app *fiber.App) {
