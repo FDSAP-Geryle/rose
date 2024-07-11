@@ -12,21 +12,20 @@ import (
 // GetUploadMerchant retrieves data from get_uploadmerchant PostgreSQL function with pagination
 func GetUploadMerchant(c *fiber.Ctx) error {
 	// Parse query parameters for pagination
+	// Default page to 1
 	page, err := strconv.Atoi(c.Query("page", "1"))
 	if err != nil || page < 1 {
 		page = 1
 	}
+	// Default perPage to 10
 	perPage, err := strconv.Atoi(c.Query("perPage", "10"))
 	if err != nil || perPage < 1 {
 		perPage = 10
 	}
-
 	// Calculate offset for pagination
 	offset := (page - 1) * perPage
-
 	// Initialize a Gorm DB connection
 	db := database.DBConn // Assuming DBConn is initialized properly with Gorm
-
 	// Retrieve total count of records
 	var totalCount int64
 	if err := db.Raw("SELECT COUNT(*) FROM get_uploadmerchant()").Scan(&totalCount).Error; err != nil {

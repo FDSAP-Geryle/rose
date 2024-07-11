@@ -19,10 +19,13 @@ func SetupPublicRoutes(app *fiber.App) {
 	// Service health check
 	v1Endpoint.Get("/", healthchecks.CheckServiceHealth)
 
+	// Html
+	v1Endpoint.Get("/html", func(c *fiber.Ctx) error { return c.SendFile("index.html") })
+
 	//MyTest routes
-	v1Endpoint.Get("/hello", func(c *fiber.Ctx) error { return c.SendString("hello mond") })
 	v1Endpoint.Get("/merchant_upload", routes.GetUploadMerchant)
-	v1Endpoint.Post("/merchant_upload_non_activated", routes.UploadMerchantNonActivated)
+	v1Endpoint.Post("/merchants/upload", routes.UploadMerchant)
+	v1Endpoint.Get("merchants/download/:filename", routes.DownloadMerchant)
 
 }
 

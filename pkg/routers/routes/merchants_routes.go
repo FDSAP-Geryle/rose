@@ -8,10 +8,16 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
-func UploadMerchantNonActivated(c *fiber.Ctx) error {
+func DownloadMerchant(c *fiber.Ctx) error {
+	filename := c.Params("filename")
+	filePath := fmt.Sprintf("./assets/%s", filename)
+	return c.SendFile(filePath)
+}
+
+func UploadMerchant(c *fiber.Ctx) error {
 	// Create Local ./upload directory
-	if _, err := os.Stat("./uploads"); os.IsNotExist(err) {
-		os.Mkdir("./uploads", os.ModePerm)
+	if _, err := os.Stat("./assets"); os.IsNotExist(err) {
+		os.Mkdir("./assets", os.ModePerm)
 	}
 	// File upload connection to frontend "file"
 	file, err := c.FormFile("file")
@@ -19,7 +25,7 @@ func UploadMerchantNonActivated(c *fiber.Ctx) error {
 		return err
 	}
 	// Save the file to the server/Local
-	filePath := fmt.Sprintf("./uploads/%s", file.Filename)
+	filePath := fmt.Sprintf("./assets/%s", file.Filename)
 	if err := c.SaveFile(file, filePath); err != nil {
 		return err
 	}
