@@ -31,6 +31,7 @@ func GetUploadMerchant(c *fiber.Ctx) error {
 	if err := db.Raw("SELECT COUNT(*) FROM get_uploadmerchant()").Scan(&totalCount).Error; err != nil {
 		log.Printf("Failed to fetch total count: %v\n", err)
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"retCode": "400",
 			"message": "Failed to fetch total count",
 			"error":   err.Error(),
 		})
@@ -42,6 +43,7 @@ func GetUploadMerchant(c *fiber.Ctx) error {
 	if err := db.Raw("SELECT * FROM get_uploadmerchant() LIMIT ? OFFSET ?", perPage, offset).Scan(&records).Error; err != nil {
 		log.Printf("Failed to fetch records: %v\n", err)
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"retCode": "400",
 			"message": "Failed to fetch records",
 			"error":   err.Error(),
 		})
@@ -60,6 +62,7 @@ func GetUploadMerchant(c *fiber.Ctx) error {
 
 	// Return JSON response
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"retCode": "200",
 		"message": "Success fetching records",
 		"data":    response,
 	})

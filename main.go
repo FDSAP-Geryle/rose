@@ -58,10 +58,11 @@ func main() {
 
 	// Configure application CORS
 	app.Use(cors.New(cors.Config{
-		// AllowOrigins: "*",
-		// AllowHeaders: "Origin, Content-Type, Accept, Authorization",
-		AllowOrigins: "http://localhost:49300",
-		AllowHeaders: "Origin, Content-Type, Accept",
+		AllowOrigins: "*",
+		AllowMethods: "POST, GET, OPTIONS, PUT, DELETE",
+		AllowHeaders: "Origin, Content-Type, Accept, Authorization",
+		// AllowOrigins: "http://localhost:49300",
+		// AllowHeaders: "Origin, Content-Type, Accept",
 	}))
 	// For GoRoutine implementation
 	// appb := fiber.New(fiber.Config{

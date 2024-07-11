@@ -13,6 +13,7 @@ func ParseExcel(c *fiber.Ctx, filePath string) error {
 	if err != nil {
 		fmt.Println(err)
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"retCode": "400",
 			"message": "Failed to open file",
 			"error":   err.Error(),
 		})
@@ -28,6 +29,7 @@ func ParseExcel(c *fiber.Ctx, filePath string) error {
 	sheetNames := f.GetSheetList()
 	if len(sheetNames) == 0 {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"retCode": "400",
 			"message": "No sheets found in the Excel file",
 		})
 	}
@@ -40,6 +42,7 @@ func ParseExcel(c *fiber.Ctx, filePath string) error {
 	if err != nil {
 		fmt.Println(err)
 		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{
+			"retCode": "400",
 			"message": "Failed to get rows",
 			"error":   err.Error(),
 		})
@@ -47,6 +50,7 @@ func ParseExcel(c *fiber.Ctx, filePath string) error {
 
 	if len(rows) < 2 {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"retCode": "400",
 			"message": "No data found in the sheet",
 		})
 	}
@@ -68,6 +72,7 @@ func ParseExcel(c *fiber.Ctx, filePath string) error {
 	}
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"retCode": "200",
 		"message": "success",
 		"data":    data,
 	})

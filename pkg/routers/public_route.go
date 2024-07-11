@@ -26,6 +26,7 @@ func SetupPublicRoutes(app *fiber.App) {
 	v1Endpoint.Get("/merchant_upload", routes.GetUploadMerchant)
 	v1Endpoint.Post("/merchants/upload", routes.UploadMerchant)
 	v1Endpoint.Get("merchants/download/:filename", routes.DownloadMerchant)
+	v1Endpoint.Get("merchants/template/downloadTemplate", routes.DownloadMerchantTemplate)
 
 }
 

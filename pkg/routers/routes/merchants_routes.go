@@ -8,12 +8,14 @@ import (
 	"github.com/gofiber/fiber/v2"
 )
 
+func DownloadMerchantTemplate(c *fiber.Ctx) error {
+	return c.SendFile("./template/downloadTemplate.xlsx")
+}
 func DownloadMerchant(c *fiber.Ctx) error {
-	filename := c.Params("filename")
+	filename := c.Params("template")
 	filePath := fmt.Sprintf("./assets/%s", filename)
 	return c.SendFile(filePath)
 }
-
 func UploadMerchant(c *fiber.Ctx) error {
 	// Create Local ./upload directory
 	if _, err := os.Stat("./assets"); os.IsNotExist(err) {
