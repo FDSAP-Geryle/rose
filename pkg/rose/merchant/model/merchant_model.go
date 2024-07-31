@@ -50,3 +50,19 @@ type ListUploadMerchant struct {
 	No        string `json:"No"`
 	StoreName string `json:"Store Name"`
 }
+
+type UploadMerchantOK struct {
+	Date         string `json:"Requested_at"`
+	FilePath     string `json:"File Path "`
+	FilePathErr  string `json:"File Path Err"`
+	Status       string `json:"Status"`
+	Notes        string `json:"Notes"`
+	User         string `json:"User"`
+	TotalUpload  string `json:"Total Upload"`
+	TotalSuccess string `json:"Total Success"`
+	TotalError   string `json:"Total Error"`
+}
+
+func (UploadMerchantOK) TableName() string {
+	return "upload_merchant_ok"
+}
