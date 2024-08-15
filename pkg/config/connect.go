@@ -3,10 +3,10 @@ package config
 
 import (
 	"fmt"
-	"rose/pkg/utils"
-	"rose/pkg/utils/go-utils/database"
-	"rose/pkg/utils/go-utils/encryptDecrypt"
-	httpUtils "rose/pkg/utils/go-utils/http"
+	"rosei/pkg/utils"
+	"rosei/pkg/utils/go-utils/database"
+	"rosei/pkg/utils/go-utils/encryptDecrypt"
+	httpUtils "rosei/pkg/utils/go-utils/http"
 
 	"log"
 	"net/http"

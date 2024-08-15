@@ -286,9 +286,11 @@ func GetJWTClaimOfType(key string, valueType interface{}) error {
 	return err
 }
 
-func GenerateJWTToken() (string, error) {
+func GenerateJWTToken(userName string, userID uint) (string, error) {
 	claims := jwt.MapClaims{
-		"exp": time.Now().Add(time.Minute * 15).Unix(),
+		"exp":      time.Now().Add(jwtConfig.Duration).Unix(),
+		"user_id":  userID,
+		"username": userName,
 	}
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 
