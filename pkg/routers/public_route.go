@@ -20,3 +20,5 @@ func SetupPublicRoutes(app *fiber.App) {
 	v1Endpoint.Get("/login", login.Login)
 	v1Endpoint.Get("/register", register.Register)
 }
+
+// hello
