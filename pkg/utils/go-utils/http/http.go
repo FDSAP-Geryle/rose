@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"io"
+	"io/ioutil"
 	"net/http"
 )
 
@@ -30,7 +31,7 @@ func ReadBodyRequest(method, url string, input interface{}, headers http.Header)
 
 		if err == nil {
 			defer resp.Body.Close()
-			return io.ReadAll(resp.Body)
+			return ioutil.ReadAll(resp.Body)
 		}
 	}
 
@@ -46,7 +47,7 @@ func RequestJSON(method, url string, input, output, outputErr interface{}, heade
 		resp, err := Request(method, url, bytes.NewBuffer(message), headers)
 
 		if err == nil {
-			body, err := io.ReadAll(resp.Body)
+			body, err := ioutil.ReadAll(resp.Body)
 			defer resp.Body.Close()
 
 			if err == nil {

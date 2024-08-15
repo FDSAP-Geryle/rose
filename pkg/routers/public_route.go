@@ -1,10 +1,7 @@
 package routers
 
 import (
-	controllers "rose/pkg/controllers"
-	"rose/pkg/controllers/healthchecks"
-	"rose/pkg/routers/routes"
-	"rose/pkg/utils/go-utils/encryptDecrypt"
+	"rosei/pkg/controllers/healthchecks"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -24,7 +21,6 @@ func SetupPublicRoutes(app *fiber.App) {
 	v1Endpoint.Get("/merchant_upload", routes.GetUploadMerchant)
 	v1Endpoint.Post("/merchant_upload_non_activated", routes.UploadMerchantNonActivated)
 
-	//
 }
 
 func SetupPublicRoutesB(app *fiber.App) {
