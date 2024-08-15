@@ -2,8 +2,6 @@ package routers
 
 import (
 	"rosei/pkg/controllers/healthchecks"
-	"rosei/pkg/controllers/login"
-	"rosei/pkg/controllers/register"
 
 	"github.com/gofiber/fiber/v2"
 )
@@ -17,8 +15,10 @@ func SetupPublicRoutes(app *fiber.App) {
 
 	// Service health check
 	v1Endpoint.Get("/", healthchecks.CheckServiceHealth)
-	v1Endpoint.Get("/login", login.Login)
-	v1Endpoint.Get("/register", register.Register)
+
+	//MyTest routes
+	v1Endpoint.Get("/hello", func(c *fiber.Ctx) error { return c.SendString("hello mond") })
+
 }
 
 // hello
